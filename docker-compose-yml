@@ -15,7 +15,7 @@ services:
     environment:
       POSTGRES_DB: ibge
       POSTGRES_USER: ibge
-      POSTGRES_PASSWORD: ibge_password
+      POSTGRES_PASSWORD: ibge_password123
     ports:
       - "5432:5432"
     volumes:
