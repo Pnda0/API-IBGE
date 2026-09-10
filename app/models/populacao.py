@@ -11,7 +11,7 @@ class Populacao(Base):
 
     municipio_id: Mapped[int] = mapped_column(
         ForeignKey("municipios.id"),
-        nullable=False,
+        nullable=False,''
     )
 
     ano: Mapped[int] = mapped_column(nullable=False)
