@@ -2,8 +2,4 @@
 
 fastapi
 uvicorn[standard]
-psycopg[binary]
-python-dotenv
-SQLAlchemy
 requests
-
