@@ -1,0 +1,655 @@
+<title>Brasil em Números</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Hanken+Grotesk:wght@400..700&display=swap">
+<style>
+:root{
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Hanken Grotesk","Segoe UI",system-ui,sans-serif;
+  --mono:ui-monospace,"Cascadia Code",Consolas,Menlo,monospace;
+
+  --bg:#e8ecf2; --surface:#fbfcfd; --surface-2:#eff3f8;
+  --ink:#0c1a2b; --ink-2:#465569; --ink-3:#66758a;
+  --line:#d9e0e8; --grid:#e4e9f0; --axis:#c3ccd8;
+  --accent:#2a78d6; --accent-deep:#0d366b; --gold:#f2b705;
+  --good:#006300; --warn:#8a5a00; --warn-bg:#fff3d6;
+  --rail:#0a2342; --rail-ink:#d3deee; --rail-mute:#8ea3c0; --rail-line:rgba(255,255,255,.09); --rail-hover:rgba(255,255,255,.07);
+  --shadow:0 1px 2px rgba(12,26,43,.05),0 12px 28px -16px rgba(12,26,43,.18);
+
+  --s1:#cde2fb; --s2:#9ec5f4; --s3:#6da7ec; --s4:#3987e5; --s5:#256abf; --s6:#184f95; --s7:#0d366b;
+  --on1:#0c1a2b; --on2:#0c1a2b; --on3:#0c1a2b; --on4:#0c1a2b; --on5:#fff; --on6:#fff; --on7:#fff;
+
+  --c1:#2a78d6; --c2:#eb6834; --c3:#1baf7a; --c4:#eda100; --c5:#e87ba4;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#080f1a; --surface:#0f1929; --surface-2:#152238;
+    --ink:#eaf1fb; --ink-2:#a7b6c9; --ink-3:#7f8fa4;
+    --line:#1f2e44; --grid:#1a2840; --axis:#2c3d57;
+    --accent:#3987e5; --accent-deep:#cde2fb;
+    --good:#0ca30c; --warn:#fab219; --warn-bg:#2b2208;
+    --rail:#060c17; --rail-ink:#c7d3e5; --rail-mute:#7d91ad; --rail-line:rgba(255,255,255,.07); --rail-hover:rgba(255,255,255,.06);
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 28px -16px rgba(0,0,0,.6);
+    --s1:#0d366b; --s2:#184f95; --s3:#256abf; --s4:#3987e5; --s5:#6da7ec; --s6:#9ec5f4; --s7:#cde2fb;
+    --on1:#fff; --on2:#fff; --on3:#fff; --on4:#08121f; --on5:#08121f; --on6:#08121f; --on7:#08121f;
+    --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500; --c5:#d55181;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#080f1a; --surface:#0f1929; --surface-2:#152238;
+  --ink:#eaf1fb; --ink-2:#a7b6c9; --ink-3:#7f8fa4;
+  --line:#1f2e44; --grid:#1a2840; --axis:#2c3d57;
+  --accent:#3987e5; --accent-deep:#cde2fb;
+  --good:#0ca30c; --warn:#fab219; --warn-bg:#2b2208;
+  --rail:#060c17; --rail-ink:#c7d3e5; --rail-mute:#7d91ad; --rail-line:rgba(255,255,255,.07); --rail-hover:rgba(255,255,255,.06);
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 28px -16px rgba(0,0,0,.6);
+  --s1:#0d366b; --s2:#184f95; --s3:#256abf; --s4:#3987e5; --s5:#6da7ec; --s6:#9ec5f4; --s7:#cde2fb;
+  --on1:#fff; --on2:#fff; --on3:#fff; --on4:#08121f; --on5:#08121f; --on6:#08121f; --on7:#08121f;
+  --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500; --c5:#d55181;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--bg);color:var(--ink);font:400 14px/1.45 var(--body);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+b,strong{font-weight:650}
+
+.app{display:grid;grid-template-columns:236px minmax(0,1fr);min-height:100vh}
+
+/* ---------- rail ---------- */
+.rail{background:var(--rail);color:var(--rail-ink);padding:24px 16px;display:flex;flex-direction:column;gap:28px;position:sticky;top:0;height:100vh;align-self:start}
+.brand{display:flex;align-items:center;gap:12px;padding:0 8px}
+.brand-mark{width:34px;height:34px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3px;flex:none}
+.brand-mark i{border-radius:4px;background:#5598e7}
+.brand-mark i:nth-child(1){background:#9ec5f4}
+.brand-mark i:nth-child(3){background:#2a78d6}
+.brand-mark i:nth-child(4){background:var(--gold)}
+.brand-name{font:700 17px/1.1 var(--display);letter-spacing:-.01em;color:#fff}
+.brand-name small{display:block;font:500 11px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--rail-mute);margin-top:3px}
+.nav{display:flex;flex-direction:column;gap:2px}
+.nav-label{font:600 10.5px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--rail-mute);padding:0 10px 8px}
+.nav a{display:flex;align-items:center;gap:11px;padding:9px 10px;border-radius:9px;color:var(--rail-ink);text-decoration:none;font-weight:550;font-size:14px}
+.nav a:hover{background:var(--rail-hover)}
+.nav a[aria-current="page"]{background:rgba(255,255,255,.12);color:#fff}
+.nav svg{width:17px;height:17px;flex:none;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+.rail-foot{margin-top:auto;border-top:1px solid var(--rail-line);padding:16px 8px 0;display:flex;flex-direction:column;gap:10px}
+.rail-foot h4{margin:0;font:600 12px var(--body);color:#fff;display:flex;align-items:center;gap:8px}
+.wip{font:600 10px var(--body);letter-spacing:.06em;text-transform:uppercase;background:rgba(242,183,5,.16);color:#f6cd47;padding:2px 7px;border-radius:999px}
+.rail-foot code{font:12px/1.7 var(--mono);color:var(--rail-mute);display:block}
+.rail-foot code em{font-style:normal;color:#9ec5f4}
+
+/* ---------- main ---------- */
+.main{padding:28px 32px 40px;display:flex;flex-direction:column;gap:20px;min-width:0}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.eyebrow{font:600 11.5px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin:0 0 6px}
+h1{margin:0;font:700 clamp(28px,3.2vw,38px)/1.05 var(--display);letter-spacing:-.025em;text-wrap:balance}
+.lede{margin:8px 0 0;color:var(--ink-2);max-width:56ch}
+.top-meta{display:flex;flex-direction:column;align-items:flex-end;gap:8px;min-width:0}
+.pill{display:inline-flex;align-items:center;gap:8px;font:600 12px var(--body);padding:6px 11px;border-radius:999px;background:var(--warn-bg);color:var(--warn)}
+.pill i{width:7px;height:7px;border-radius:50%;background:currentColor}
+.req{font:12px/1.4 var(--mono);color:var(--ink-2);background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:7px 11px;max-width:100%;overflow-wrap:anywhere}
+.req b{color:var(--accent);font-weight:600;margin-right:6px}
+
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);padding:7px 14px;border-radius:999px;font-weight:600;font-size:13px;cursor:pointer;transition:background .15s,border-color .15s}
+.chip:hover{border-color:var(--ink-3)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.dot{width:9px;height:9px;border-radius:50%;flex:none;display:inline-block}
+
+/* ---------- KPI strip ---------- */
+.kpis{display:grid;grid-template-columns:1.55fr repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+.kpi{background:var(--surface);padding:20px 22px 18px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.kpi-label{font:600 12px var(--body);color:var(--ink-3);letter-spacing:.02em}
+.kpi-val{font:650 clamp(26px,2.3vw,32px)/1.05 var(--display);letter-spacing:-.02em;white-space:nowrap}
+.kpi-val small{font:500 14px var(--body);color:var(--ink-3);letter-spacing:0;margin-left:5px}
+.hero .kpi-val{font:700 clamp(50px,5.2vw,68px)/.95 var(--display);letter-spacing:-.035em}
+.hero .kpi-val small{font-size:18px}
+.kpi-sub{font-size:12.5px;color:var(--ink-2);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.up{color:var(--good);font-weight:650}
+.kpi-spark{margin-top:auto;padding-top:8px;display:block}
+.hero{background:linear-gradient(160deg,var(--surface) 55%,var(--surface-2))}
+
+/* ---------- cards ---------- */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 22px 22px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.card-h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.card-h h2{margin:0;font:650 18px/1.15 var(--display);letter-spacing:-.015em}
+.card-h p{margin:4px 0 0;font-size:12.5px;color:var(--ink-3)}
+.seg{display:inline-flex;background:var(--surface-2);border-radius:10px;padding:3px;gap:2px;flex-wrap:wrap}
+.seg button{border:0;background:none;font-weight:600;font-size:12.5px;color:var(--ink-2);padding:6px 11px;border-radius:8px;cursor:pointer}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(12,26,43,.16)}
+
+.row-map{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:16px}
+.row-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+
+/* map */
+.detail{display:flex;flex-direction:column;gap:8px;min-height:62px}
+.detail-name{display:flex;align-items:center;gap:9px;font:650 17px var(--display)}
+.detail-name span.r{font:500 12.5px var(--body);color:var(--ink-3)}
+.detail-stats{display:grid;grid-template-columns:repeat(4,auto);justify-content:space-between;gap:10px}
+.detail-stats div{display:flex;flex-direction:column;font-size:11.5px;color:var(--ink-3)}
+.detail-stats b{font:650 15px var(--display);color:var(--ink-2)}
+.detail-stats .on b{color:var(--ink)}
+.tiles{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.tile{aspect-ratio:1;border:0;border-radius:8px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:0;transition:opacity .15s,transform .12s}
+.tile b{font:700 13px var(--display);letter-spacing:.01em}
+.tile small{font:600 10px var(--body);opacity:.85}
+.t0{background:var(--s1);color:var(--on1)}.t1{background:var(--s2);color:var(--on2)}.t2{background:var(--s3);color:var(--on3)}.t3{background:var(--s4);color:var(--on4)}.t4{background:var(--s5);color:var(--on5)}.t5{background:var(--s6);color:var(--on6)}.t6{background:var(--s7);color:var(--on7)}
+.tile.is-dim{opacity:.2}
+.tile.is-focus{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--ink);transform:translateY(-1px);opacity:1}
+.ramp{display:flex;align-items:center;gap:10px;font-size:11.5px;color:var(--ink-3)}
+.ramp .sw{display:flex;gap:2px;flex:1;max-width:220px}
+.ramp .sw i{flex:1;height:8px;border-radius:2px}
+
+/* ranking */
+.rank{display:grid;gap:4px;flex:1;align-content:space-between}
+.rank.short{align-content:start;grid-auto-rows:44px;gap:6px}
+.rk{display:grid;grid-template-columns:22px minmax(92px,150px) minmax(0,1fr) 78px;align-items:center;gap:10px;background:none;border:0;padding:5px 8px;margin:0 -8px;border-radius:9px;text-align:left;cursor:pointer;width:calc(100% + 16px)}
+.rk-n{font:600 12px var(--body);color:var(--ink-3);font-variant-numeric:tabular-nums}
+.rk-name{font-weight:550;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rk-track{height:16px;border-left:1px solid var(--axis)}
+.rk-track i{display:block;height:100%;background:var(--accent);border-radius:0 4px 4px 0;min-width:2px}
+.rk-val{text-align:right;font-weight:650;font-variant-numeric:tabular-nums;font-size:13px}
+.rk.is-focus{background:var(--surface-2)}
+.rk.is-focus .rk-track i{background:var(--accent-deep)}
+.rk.is-focus .rk-name{font-weight:700}
+.rank-more{font-size:12.5px;color:var(--accent);font-weight:600;text-decoration:none;align-self:flex-start}
+.rank-more:hover{text-decoration:underline}
+
+/* income bars */
+.irows{display:grid;gap:24px;flex:1;align-content:center;padding:10px 0}
+.insight{margin:0;padding-top:14px;border-top:1px solid var(--grid);font-size:13px;color:var(--ink-2)}
+.insight b{color:var(--ink)}
+.uf-dots{display:flex;flex-wrap:wrap;gap:4px;margin-top:auto;padding-top:10px}
+.uf-dots i{width:11px;height:11px;border-radius:3px}
+.uf-dots i.is-dim{opacity:.22}
+.ir{display:grid;grid-template-columns:104px minmax(0,1fr) 72px;align-items:center;gap:10px}
+.ir.is-dim{opacity:.35}
+.ir-name{display:flex;align-items:center;gap:8px;font-weight:550;font-size:13px}
+.ir-track{position:relative;height:22px;border-left:1px solid var(--axis)}
+.ir-track .bar{display:block;height:100%;background:var(--accent);border-radius:0 4px 4px 0}
+.ir-track .ref{position:absolute;top:-13px;bottom:-13px;width:1px;background:var(--ink);opacity:.7}
+.ir-val{text-align:right;font-weight:650;font-variant-numeric:tabular-nums;font-size:13px}
+.legend-ref{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-2)}
+.legend-ref u{display:inline-block;width:1px;height:14px;background:var(--ink);opacity:.7}
+
+/* trend */
+.big{display:flex;gap:26px;flex-wrap:wrap;align-items:flex-end}
+.big div{display:flex;flex-direction:column}
+.big .n{font:700 34px/1 var(--display);letter-spacing:-.03em}
+.big .n small{font:500 14px var(--body);color:var(--ink-3);letter-spacing:0;margin-left:3px}
+.big .l{font-size:12px;color:var(--ink-3);margin-top:4px}
+#trend{width:100%;height:200px;position:relative}
+#trend svg{display:block;width:100%;height:200px;overflow:visible}
+svg .gl{stroke:var(--grid);stroke-width:1}
+svg .ax{stroke:var(--axis);stroke-width:1}
+svg .tx{fill:var(--ink-3);font:500 11px var(--body)}
+svg .tx-end{fill:var(--ink);font:700 12px var(--body)}
+svg .ln{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+svg .ar{fill:var(--accent);fill-opacity:.1;stroke:none}
+svg .dt{fill:var(--accent);stroke:var(--surface);stroke-width:2}
+svg .xh{stroke:var(--ink-3);stroke-width:1}
+.mini{display:grid;gap:9px}
+.mini-h{font:600 11.5px var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.mr{display:grid;grid-template-columns:104px minmax(0,1fr) 46px;align-items:center;gap:10px;font-size:12.5px}
+.mr.is-dim{opacity:.35}
+.mr .nm{display:flex;align-items:center;gap:8px;font-weight:550}
+.mr .tr{height:8px;border-left:1px solid var(--axis)}
+.mr .tr i{display:block;height:100%;background:var(--ink-3);border-radius:0 4px 4px 0;opacity:.55}
+.mr b{text-align:right;font-variant-numeric:tabular-nums}
+
+/* population */
+.stack{display:flex;gap:2px;height:16px}
+.stack i{display:block;height:100%;min-width:3px}
+.stack i:first-child{border-radius:5px 0 0 5px}.stack i:last-child{border-radius:0 5px 5px 0}
+.leg{display:grid;gap:2px}
+.lg{display:grid;grid-template-columns:minmax(0,1fr) auto 52px;gap:12px;align-items:center;padding:6px 0;font-size:13px;border-bottom:1px solid var(--grid)}
+.lg:last-child{border-bottom:0}
+.lg .nm{display:flex;align-items:center;gap:9px;font-weight:550}
+.lg .v{color:var(--ink-2);font-variant-numeric:tabular-nums}
+.lg b{text-align:right;font-variant-numeric:tabular-nums}
+.lg.is-dim{opacity:.35}
+.cols{display:flex;align-items:flex-end;justify-content:space-between;height:138px;gap:6px;border-bottom:1px solid var(--axis)}
+.col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:5px;min-width:0}
+.col span{font:600 11.5px var(--body);color:var(--ink-2);font-variant-numeric:tabular-nums}
+.col i{display:block;width:min(24px,70%);background:var(--s3);border-radius:4px 4px 0 0}
+.col.last i{background:var(--accent)}
+.col.last span{color:var(--ink);font-weight:700}
+.years{display:flex;justify-content:space-between;gap:6px;margin-top:-8px;font-size:11.5px;color:var(--ink-3)}
+.years span{flex:1;text-align:center}
+.sub-h{font:600 11.5px var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:-4px}
+
+/* table */
+.tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.search{position:relative}
+.search input{font:500 13px var(--body);color:var(--ink);background:var(--surface-2);border:1px solid transparent;border-radius:10px;padding:8px 12px 8px 34px;width:220px;max-width:100%}
+.search input:focus-visible{outline:2px solid var(--accent);background:var(--surface)}
+.search svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:15px;height:15px;stroke:var(--ink-3);fill:none;stroke-width:2;stroke-linecap:round}
+.tw{overflow:auto;max-height:470px;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:13px}
+th{position:sticky;top:0;background:var(--surface-2);text-align:right;font-weight:600;font-size:12px;color:var(--ink-3);padding:0;z-index:1;white-space:nowrap}
+th:first-child,th:nth-child(2){text-align:left}
+th button{background:none;border:0;cursor:pointer;font-weight:600;font-size:12px;color:inherit;padding:11px 14px;width:100%;text-align:inherit}
+th button:hover{color:var(--ink)}
+th[aria-sort] button{color:var(--ink)}
+th[aria-sort="ascending"] button::after{content:" ↑"}
+th[aria-sort="descending"] button::after{content:" ↓"}
+td{padding:9px 14px;border-top:1px solid var(--grid);text-align:right;font-variant-numeric:tabular-nums}
+td:first-child,td:nth-child(2){text-align:left}
+tbody tr:hover td{background:var(--surface-2)}
+td .uf{display:inline-block;width:30px;font-weight:700;font-family:var(--display)}
+td .pb{display:flex;align-items:center;justify-content:flex-end;gap:10px}
+td .pb i{display:block;height:6px;border-radius:0 3px 3px 0;background:var(--s3);min-width:2px}
+td .r{display:inline-flex;align-items:center;gap:8px;color:var(--ink-2)}
+.empty{padding:28px;text-align:center;color:var(--ink-3)}
+.note{font-size:12px;color:var(--ink-3);max-width:90ch;margin:0}
+
+/* tooltip */
+.tip{position:fixed;z-index:50;pointer-events:none;background:var(--ink);color:var(--surface);padding:8px 11px;border-radius:9px;font-size:12px;line-height:1.4;max-width:250px;box-shadow:0 8px 24px rgba(0,0,0,.28)}
+.tip b{font-weight:700}
+
+/* ---------- responsive ---------- */
+@media (max-width:1240px){
+  .kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .kpis .hero{grid-column:1/-1}
+  .row-3{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .row-3>:last-child{grid-column:1/-1}
+}
+@media (max-width:980px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  .rail{position:static;height:auto;flex-direction:row;align-items:center;padding:14px 16px;gap:16px;flex-wrap:wrap}
+  .nav{flex-direction:row;overflow-x:auto;flex:1;min-width:0}
+  .nav-label,.rail-foot{display:none}
+  .nav a{white-space:nowrap;padding:8px 10px}
+  .row-map{grid-template-columns:minmax(0,1fr)}
+  .top-meta{align-items:flex-start}
+}
+@media (max-width:720px){
+  .main{padding:20px 16px 32px}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .row-3{grid-template-columns:minmax(0,1fr)}
+  .card{padding:18px 16px 20px}
+  .tile small{display:none}
+  .tile b{font-size:12px}
+  .ir{grid-template-columns:96px minmax(0,1fr) 62px}
+  .mr{grid-template-columns:96px minmax(0,1fr) 42px}
+  .rk{grid-template-columns:20px minmax(70px,110px) minmax(0,1fr) 66px}
+  .kpi{padding:16px}
+  .detail-stats{grid-template-columns:repeat(2,auto);justify-content:start;gap:8px 28px}
+  .search input{width:100%}
+  .search{flex:1}
+}
+</style>
+
+<div class="app">
+  <aside class="rail">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="brand-name">Brasil em Números<small>Indicadores</small></div>
+    </div>
+    <nav class="nav" aria-label="Seções">
+      <div class="nav-label">Explorar</div>
+      <a href="#topo" aria-current="page"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg>Panorama</a>
+      <a href="#mapa"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.2A7 7 0 0 1 19 9.8C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.4"/></svg>Territórios</a>
+      <a href="#renda"><svg viewBox="0 0 24 24"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H19v4"/><path d="M4 7.5V17a2 2 0 0 0 2 2h13.5a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1H6.5A2.5 2.5 0 0 1 4 7.5z"/><circle cx="16.5" cy="13.5" r="1.1"/></svg>Renda</a>
+      <a href="#trabalho"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7"/><path d="M3 13h18"/></svg>Trabalho</a>
+      <a href="#populacao"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17.2" cy="9" r="2.4"/><path d="M16.5 14.2A5 5 0 0 1 21 19.5"/></svg>População</a>
+      <a href="#tabela"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 10h18M9 10v10"/></svg>Tabela de UFs</a>
+    </nav>
+    <div class="rail-foot">
+      <h4>Sua API <span class="wip">em construção</span></h4>
+      <code><em>GET</em> /v1/ufs<br><em>GET</em> /v1/regioes<br><em>GET</em> /v1/indicadores</code>
+    </div>
+  </aside>
+
+  <main class="main" id="topo">
+    <header class="top">
+      <div>
+        <p class="eyebrow">Panorama nacional</p>
+        <h1>O Brasil em 27 unidades da federação</h1>
+        <p class="lede">População, renda e trabalho lado a lado. Filtre por região e passe o mouse no mapa para comparar as UFs.</p>
+      </div>
+      <div class="top-meta">
+        <span class="pill"><i></i>Dados de exemplo · API em construção</span>
+        <div class="req" id="req" aria-label="Requisição equivalente à visão atual"></div>
+      </div>
+    </header>
+
+    <div class="chips" id="chips" role="group" aria-label="Filtrar por região"></div>
+
+    <section class="kpis" id="kpis" aria-label="Indicadores principais"></section>
+
+    <section class="row-map" id="mapa">
+      <article class="card">
+        <div class="card-h">
+          <div><h2>Mapa das UFs</h2><p>Cada quadrado é uma UF, posicionado como no território</p></div>
+          <div class="seg" id="metricSeg" role="group" aria-label="Indicador do mapa"></div>
+        </div>
+        <div class="detail" id="detail" aria-live="polite"></div>
+        <div class="tiles" id="tiles"></div>
+        <div class="ramp" id="ramp"></div>
+      </article>
+      <article class="card">
+        <div class="card-h">
+          <div><h2 id="rankTitle">Ranking das UFs</h2><p id="rankSub"></p></div>
+        </div>
+        <div class="rank" id="rank"></div>
+        <a class="rank-more" href="#tabela">Ver as 27 UFs na tabela ↓</a>
+      </article>
+    </section>
+
+    <section class="row-3">
+      <article class="card" id="renda">
+        <div class="card-h">
+          <div><h2>Renda por região</h2><p id="rendaSub"></p></div>
+          <div class="seg" id="rendaSeg" role="group" aria-label="Tipo de renda">
+            <button type="button" data-rmode="rpc" aria-pressed="true">Per capita</button>
+            <button type="button" data-rmode="rmt" aria-pressed="false">Do trabalho</button>
+          </div>
+        </div>
+        <div class="legend-ref" id="rendaRef"></div>
+        <div class="irows" id="irows"></div>
+        <p class="insight" id="insight"></p>
+      </article>
+
+      <article class="card" id="trabalho">
+        <div class="card-h">
+          <div><h2>Mercado de trabalho</h2><p>Taxa de desocupação, trimestre a trimestre · Brasil</p></div>
+        </div>
+        <div class="big" id="bigTrab"></div>
+        <div id="trend" role="img" aria-label="Taxa de desocupação nos últimos 12 trimestres"></div>
+        <div class="mini" id="mini"></div>
+      </article>
+
+      <article class="card" id="populacao">
+        <div class="card-h">
+          <div><h2>População por região</h2><p>Censo 2022 · participação no total do país</p></div>
+        </div>
+        <div class="stack" id="stack"></div>
+        <div class="leg" id="leg"></div>
+        <div class="sub-h">Crescimento entre os Censos (milhões)</div>
+        <div class="cols" id="cols"></div>
+        <div class="years" id="years"></div>
+      </article>
+    </section>
+
+    <section class="card" id="tabela">
+      <div class="card-h">
+        <div><h2>Todas as UFs</h2><p id="tblCount"></p></div>
+        <div class="tools">
+          <label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4-4"/></svg><input id="q" type="search" placeholder="Buscar UF" aria-label="Buscar UF"></label>
+        </div>
+      </div>
+      <div class="tw"><table id="tbl"></table></div>
+    </section>
+
+    <p class="note">Dados de exemplo para validar o layout. População, UFs e municípios seguem a ordem de grandeza do Censo 2022; renda e desocupação são ilustrativas e serão trocadas pelos valores da sua API.</p>
+  </main>
+</div>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+(function(){
+'use strict';
+const $=s=>document.querySelector(s);
+const nf=new Intl.NumberFormat('pt-BR');
+const f1=v=>v.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1});
+const mi=v=>f1(v/1e6);
+const brl=v=>'R$ '+nf.format(Math.round(v));
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+
+const REG={
+  SE:{n:'Sudeste',c:'--c1',slug:'sudeste'},
+  NE:{n:'Nordeste',c:'--c2',slug:'nordeste'},
+  S:{n:'Sul',c:'--c3',slug:'sul'},
+  N:{n:'Norte',c:'--c4',slug:'norte'},
+  CO:{n:'Centro-Oeste',c:'--c5',slug:'centro-oeste'}
+};
+/* uf, nome, região, população (Censo 2022), municípios, renda per capita, rendimento do trabalho, taxa de desocupação, coluna, linha no cartograma */
+const UFS=[
+['SP','São Paulo','SE',44411238,645,2650,4100,5.3,3,4],['MG','Minas Gerais','SE',20539989,853,2000,3350,4.1,4,4],
+['RJ','Rio de Janeiro','SE',16055174,92,2400,4000,7.0,4,5],['ES','Espírito Santo','SE',3833712,78,2200,3400,4.4,5,4],
+['BA','Bahia','NE',14141626,417,1370,2450,8.1,4,2],['PE','Pernambuco','NE',9058931,185,1400,2450,8.3,6,3],
+['CE','Ceará','NE',8794957,184,1350,2350,6.6,5,1],['MA','Maranhão','NE',6776699,217,1000,2100,6.4,3,1],
+['PB','Paraíba','NE',3974687,223,1420,2400,6.5,6,2],['RN','Rio Grande do Norte','NE',3302729,167,1550,2500,7.1,6,1],
+['AL','Alagoas','NE',3127683,102,1250,2250,8.0,6,4],['PI','Piauí','NE',3271199,224,1300,2100,6.0,4,1],
+['SE','Sergipe','NE',2210004,75,1500,2450,9.0,6,5],['PA','Pará','N',8120131,144,1200,2450,6.5,2,1],
+['AM','Amazonas','N',3941613,62,1300,2600,7.8,1,1],['RO','Rondônia','N',1581196,52,1900,3050,3.2,1,2],
+['TO','Tocantins','N',1511460,139,1700,2750,4.9,3,2],['AC','Acre','N',830018,22,1300,2600,8.0,0,2],
+['AP','Amapá','N',733759,16,1200,2650,8.9,3,0],['RR','Roraima','N',636707,15,1800,3000,4.9,1,0],
+['PR','Paraná','S',11444380,399,2350,3500,3.4,3,5],['RS','Rio Grande do Sul','S',10882965,497,2450,3700,4.0,3,7],
+['SC','Santa Catarina','S',7610361,295,2650,3600,2.6,3,6],['GO','Goiás','CO',7056495,246,2050,3300,4.8,3,3],
+['MT','Mato Grosso','CO',3658649,142,2250,3300,3.0,2,2],['MS','Mato Grosso do Sul','CO',2757013,79,2300,3400,3.0,2,3],
+['DF','Distrito Federal','CO',2817381,1,3300,6100,6.5,4,3]
+].map(a=>({u:a[0],n:a[1],r:a[2],p:a[3],m:a[4],rpc:a[5],rmt:a[6],tx:a[7],x:a[8],y:a[9]}));
+const BY=Object.fromEntries(UFS.map(u=>[u.u,u]));
+
+const PEA=.53; // parcela da população na força de trabalho
+function agg(list){
+  const p=list.reduce((s,u)=>s+u.p,0);
+  const w=k=>list.reduce((s,u)=>s+u.p*u[k],0)/p;
+  const deso=list.reduce((s,u)=>s+u.p*PEA*u.tx/100,0);
+  return {p,m:list.reduce((s,u)=>s+u.m,0),n:list.length,rpc:w('rpc'),rmt:w('rmt'),deso,tx:deso/(p*PEA)*100};
+}
+const BR=agg(UFS);
+const RA=Object.fromEntries(Object.keys(REG).map(k=>[k,agg(UFS.filter(u=>u.r===k))]));
+
+const CENSOS=[[1970,93.1],[1980,119.0],[1991,146.8],[2000,169.8],[2010,190.7],[2022,203.1]];
+const QTR=['3T23','4T23','1T24','2T24','3T24','4T24','1T25','2T25','3T25','4T25','1T26','2T26'];
+const TREND=[7.7,7.5,7.9,7.1,6.6,6.2,7.0,6.6,6.0,5.6,6.1,+BR.tx.toFixed(1)];
+const RPC_S=[.80,.83,.86,.90,.93,.95,.97,1].map(f=>Math.round(BR.rpc*f));
+const RMT_S=[.89,.91,.93,.95,.965,.975,.985,1].map(f=>Math.round(BR.rmt*f));
+
+const METRICS={
+  pop:{label:'População',get:u=>u.p,tile:v=>mi(v),full:v=>mi(v)+' mi',param:'populacao',sub:'habitantes, Censo 2022'},
+  rpc:{label:'Renda per capita',get:u=>u.rpc,tile:v=>nf.format(v),full:brl,param:'renda_per_capita',sub:'rendimento domiciliar per capita'},
+  tx:{label:'Desocupação',get:u=>u.tx,tile:v=>f1(v)+'%',full:v=>f1(v)+'%',param:'taxa_desocupacao',sub:'taxa de desocupação'}
+};
+const BIN={};
+for(const k in METRICS){
+  const s=[...UFS].sort((a,b)=>METRICS[k].get(a)-METRICS[k].get(b));
+  BIN[k]={};s.forEach((u,i)=>BIN[k][u.u]=Math.min(6,Math.floor(i*7/s.length)));
+}
+const RANK={};
+for(const k in METRICS){
+  const s=[...UFS].sort((a,b)=>METRICS[k].get(b)-METRICS[k].get(a));
+  RANK[k]={};s.forEach((u,i)=>RANK[k][u.u]=i+1);
+}
+
+const state={reg:'all',metric:'pop',rmode:'rpc',sel:'SP',focus:'SP',sort:{k:'p',d:-1},q:''};
+const inReg=u=>state.reg==='all'||u.r===state.reg;
+const dim=k=>state.reg==='all'||state.reg===k?'':' is-dim';
+
+/* ---------- pieces ---------- */
+function spark(vals,w,h){
+  const pl=3,pr=8,pt=7,pb=6,mn=Math.min(...vals),mx=Math.max(...vals),n=vals.length;
+  const x=i=>pl+i*(w-pl-pr)/(n-1), y=v=>pt+(1-(v-mn)/((mx-mn)||1))*(h-pt-pb);
+  const pts=vals.map((v,i)=>[x(i),y(v)]);
+  const ln=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+','+p[1].toFixed(1)).join('');
+  const last=pts[n-1];
+  return `<svg class="kpi-spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" aria-hidden="true"><path class="ar" d="${ln}L${last[0]},${h}L${pts[0][0]},${h}Z"/><path class="ln" d="${ln}"/><circle class="dt" cx="${last[0]}" cy="${last[1]}" r="4"/></svg>`;
+}
+const pct=(a,b)=>(a/b-1)*100;
+const sgn=d=>(d>=0?'+':'−')+f1(Math.abs(d))+'%';
+
+function renderChips(){
+  const all=[['all','Brasil',null],...Object.keys(REG).map(k=>[k,REG[k].n,REG[k].c])];
+  $('#chips').innerHTML=all.map(([k,n,c])=>`<button type="button" class="chip" data-reg="${k}" aria-pressed="${state.reg===k}">${c?`<i class="dot" style="background:var(${c})"></i>`:''}${n}</button>`).join('');
+}
+
+function renderKpis(){
+  const L=UFS.filter(inReg),a=agg(L),all=state.reg==='all';
+  const vs=(v,b)=>{const d=pct(v,b);return `<span>${Math.abs(d).toFixed(0)}% ${d>=0?'acima':'abaixo'} da média nacional</span>`};
+  const dRpc=pct(RPC_S[7],RPC_S[6]),dRmt=pct(RMT_S[7],RMT_S[6]),dTx=pct(TREND[11],TREND[7]);
+  const hero=`<div class="kpi hero"><div class="kpi-label">População residente</div>
+    <div class="kpi-val">${mi(a.p)}<small>milhões</small></div>
+    <div class="kpi-sub">${all?`<span class="up">▲ ${sgn(pct(CENSOS[5][1],CENSOS[4][1]))}</span><span>desde o Censo 2010</span>`:`<span>${f1(a.p/BR.p*100)}% da população do país</span>`}</div>
+    ${spark(CENSOS.map(c=>c[1]),150,46)}</div>`;
+  const terr=`<div class="kpi"><div class="kpi-label">Territórios</div>
+    <div class="kpi-val">${a.n}<small>UFs</small></div>
+    <div class="kpi-sub"><span>${all?'5.570':nf.format(a.m)} municípios</span></div>
+    <div class="kpi-sub" style="color:var(--ink-3)">${all?'26 estados + DF':REG[state.reg].n}</div>
+    <div class="uf-dots" aria-hidden="true">${Object.keys(REG).flatMap(k=>UFS.filter(u=>u.r===k)).map(u=>`<i class="${inReg(u)?'':'is-dim'}" style="background:var(${REG[u.r].c})" data-tip="<b>${u.n}</b><br>${REG[u.r].n}"></i>`).join('')}</div></div>`;
+  const rpc=`<div class="kpi"><div class="kpi-label">Renda domiciliar per capita</div>
+    <div class="kpi-val">${brl(a.rpc)}</div>
+    <div class="kpi-sub">${all?`<span class="up">▲ ${sgn(dRpc)}</span><span>vs ano anterior</span>`:vs(a.rpc,BR.rpc)}</div>${spark(RPC_S,112,36)}</div>`;
+  const rmt=`<div class="kpi"><div class="kpi-label">Rendimento médio mensal</div>
+    <div class="kpi-val">${brl(a.rmt)}</div>
+    <div class="kpi-sub">${all?`<span class="up">▲ ${sgn(dRmt)}</span><span>vs ano anterior</span>`:vs(a.rmt,BR.rmt)}</div>${spark(RMT_S,112,36)}</div>`;
+  const des=`<div class="kpi"><div class="kpi-label">Pessoas desocupadas</div>
+    <div class="kpi-val">${mi(a.deso)}<small>mi</small></div>
+    <div class="kpi-sub"><b>${f1(a.tx)}%</b><span>da força de trabalho</span></div>
+    ${all?`<div class="kpi-sub"><span class="up">▼ ${sgn(dTx).replace('−','')}</span><span>vs 2T25</span></div>`:''}${spark(TREND,112,36)}</div>`;
+  $('#kpis').innerHTML=hero+terr+rpc+rmt+des;
+}
+
+function renderMetricSeg(){
+  $('#metricSeg').innerHTML=Object.keys(METRICS).map(k=>`<button type="button" data-metric="${k}" aria-pressed="${state.metric===k}">${METRICS[k].label}</button>`).join('');
+}
+function renderTiles(){
+  const M=METRICS[state.metric];
+  $('#tiles').innerHTML=UFS.map(u=>`<button type="button" class="tile t${BIN[state.metric][u.u]}${inReg(u)?'':' is-dim'}" style="grid-column:${u.x+1};grid-row:${u.y+1}" data-uf="${u.u}" data-sel="${u.u}" data-tip="<b>${u.n}</b><br>${M.full(M.get(u))}" aria-label="${u.n}: ${M.full(M.get(u))}" aria-pressed="${state.sel===u.u}"><b>${u.u}</b><small>${M.tile(M.get(u))}</small></button>`).join('');
+  const vals=UFS.map(M.get);
+  $('#ramp').innerHTML=`<span>${M.full(Math.min(...vals))}</span><span class="sw">${[0,1,2,3,4,5,6].map(i=>`<i class="t${i}"></i>`).join('')}</span><span>${M.full(Math.max(...vals))}</span>`;
+}
+function renderDetail(){
+  const u=BY[state.focus],k=state.metric;
+  const st=(key,label,val)=>`<div class="${k===key?'on':''}"><b>${val}</b>${label}</div>`;
+  $('#detail').innerHTML=`<div class="detail-name"><i class="dot" style="background:var(${REG[u.r].c})"></i>${u.n}<span class="r">${REG[u.r].n} · ${RANK[k][u.u]}º de 27 em ${METRICS[k].label.toLowerCase()}</span></div>
+  <div class="detail-stats">${st('pop','habitantes',mi(u.p)+' mi')}<div><b>${nf.format(u.m)}</b>municípios</div>${st('rpc','renda per capita',brl(u.rpc))}${st('tx','desocupação',f1(u.tx)+'%')}</div>`;
+}
+function applyFocus(){
+  document.querySelectorAll('[data-uf]').forEach(el=>el.classList.toggle('is-focus',el.dataset.uf===state.focus));
+}
+function renderRank(){
+  const M=METRICS[state.metric];
+  const list=UFS.filter(inReg).sort((a,b)=>M.get(b)-M.get(a)).slice(0,14);
+  const mx=Math.max(...list.map(M.get));
+  $('#rankTitle').textContent='Ranking das UFs · '+M.label;
+  $('#rankSub').textContent=(state.reg==='all'?'As 14 primeiras do país':'UFs do '+REG[state.reg].n)+' · '+M.sub;
+  $('#rank').classList.toggle('short',list.length<12);
+  $('#rank').innerHTML=list.map(u=>`<button type="button" class="rk" data-uf="${u.u}" data-sel="${u.u}" data-tip="<b>${u.n}</b><br>${M.full(M.get(u))}"><span class="rk-n">${RANK[state.metric][u.u]}</span><span class="rk-name">${u.n}</span><span class="rk-track"><i style="width:${M.get(u)/mx*100}%"></i></span><span class="rk-val">${M.full(M.get(u))}</span></button>`).join('');
+}
+
+function renderIncome(){
+  const key=state.rmode;
+  $('#rendaSeg').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.rmode===key));
+  $('#rendaSub').textContent=key==='rpc'?'Rendimento domiciliar per capita':'Rendimento médio mensal do trabalho';
+  const rows=Object.keys(REG).map(k=>({k,v:RA[k][key]})).sort((a,b)=>b.v-a.v);
+  const mx=Math.max(...rows.map(r=>r.v))*1.1;
+  const hi=rows[0],lo=rows[rows.length-1];
+  $('#insight').innerHTML=`<b>${REG[hi.k].n}</b> lidera ${key==='rpc'?'em renda per capita':'em rendimento do trabalho'}: <b>${f1(hi.v/lo.v)}×</b> o valor do ${REG[lo.k].n}.`;
+  $('#rendaRef').innerHTML=`<u></u>Média do Brasil · <b>${brl(BR[key])}</b>`;
+  $('#irows').innerHTML=rows.map(r=>`<div class="ir${dim(r.k)}" data-tip="<b>${REG[r.k].n}</b><br>${brl(r.v)} · ${Math.abs(pct(r.v,BR[key])).toFixed(0)}% ${r.v>=BR[key]?'acima':'abaixo'} da média"><span class="ir-name"><i class="dot" style="background:var(${REG[r.k].c})"></i>${REG[r.k].n}</span><span class="ir-track"><i class="bar" style="width:${r.v/mx*100}%"></i><u class="ref" style="left:${BR[key]/mx*100}%"></u></span><span class="ir-val">${brl(r.v)}</span></div>`).join('');
+}
+
+function renderTrendText(){
+  $('#bigTrab').innerHTML=`<div><span class="n">${f1(TREND[11])}<small>%</small></span><span class="l">taxa em ${QTR[11]}</span></div><div><span class="n">${mi(BR.deso)}<small>mi</small></span><span class="l">pessoas desocupadas</span></div>`;
+  const rows=Object.keys(REG).map(k=>({k,v:RA[k].tx})).sort((a,b)=>b.v-a.v);
+  const mx=Math.max(...rows.map(r=>r.v))*1.15;
+  $('#mini').innerHTML=`<div class="mini-h">Taxa por região</div>`+rows.map(r=>`<div class="mr${dim(r.k)}" data-tip="<b>${REG[r.k].n}</b><br>${f1(r.v)}% · ${mi(RA[r.k].deso)} mi desocupados"><span class="nm"><i class="dot" style="background:var(${REG[r.k].c})"></i>${REG[r.k].n}</span><span class="tr"><i style="width:${r.v/mx*100}%"></i></span><b>${f1(r.v)}%</b></div>`).join('');
+}
+function drawTrend(){
+  const el=$('#trend'),W=Math.max(240,el.clientWidth),H=200,n=TREND.length;
+  const m={l:30,r:48,t:14,b:26},lo=4,hi=9;
+  const x=i=>m.l+i*(W-m.l-m.r)/(n-1),y=v=>m.t+(1-(v-lo)/(hi-lo))*(H-m.t-m.b);
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">`;
+  for(let t=lo;t<=hi;t++){
+    s+=`<line class="${t===lo?'ax':'gl'}" x1="${m.l}" x2="${W-m.r+8}" y1="${y(t)}" y2="${y(t)}"/><text class="tx" x="${m.l-8}" y="${y(t)+4}" text-anchor="end">${t}%</text>`;
+  }
+  QTR.forEach((q,i)=>{if(i%3===0||i===n-1)s+=`<text class="tx" x="${x(i)}" y="${H-6}" text-anchor="middle">${q}</text>`});
+  const ln=TREND.map((v,i)=>(i?'L':'M')+x(i).toFixed(1)+','+y(v).toFixed(1)).join('');
+  s+=`<path class="ar" d="${ln}L${x(n-1)},${y(lo)}L${x(0)},${y(lo)}Z"/><path class="ln" d="${ln}"/>`;
+  s+=`<g id="xh" style="display:none"><line class="xh" y1="${m.t}" y2="${y(lo)}"/><circle class="dt" r="4.5"/></g>`;
+  s+=`<circle class="dt" cx="${x(n-1)}" cy="${y(TREND[n-1])}" r="4.5"/><text class="tx-end" x="${x(n-1)+10}" y="${y(TREND[n-1])+4}">${f1(TREND[n-1])}%</text>`;
+  s+=`<rect x="${m.l}" y="0" width="${W-m.l-m.r+8}" height="${H-m.b}" fill="transparent" id="hit"/></svg>`;
+  el.innerHTML=s;
+  const svg=el.querySelector('svg'),g=svg.querySelector('#xh'),hit=svg.querySelector('#hit');
+  hit.addEventListener('mousemove',e=>{
+    const r=svg.getBoundingClientRect();
+    let i=Math.round((e.clientX-r.left-m.l)/((W-m.l-m.r)/(n-1)));i=Math.max(0,Math.min(n-1,i));
+    g.style.display='';g.querySelector('line').setAttribute('x1',x(i));g.querySelector('line').setAttribute('x2',x(i));
+    const c=g.querySelector('circle');c.setAttribute('cx',x(i));c.setAttribute('cy',y(TREND[i]));
+    showTip(`<b>${QTR[i]}</b><br>${f1(TREND[i])}% de desocupação`,e.clientX,e.clientY);
+  });
+  hit.addEventListener('mouseleave',()=>{g.style.display='none';hideTip()});
+}
+
+function renderPop(){
+  const rows=Object.keys(REG).map(k=>({k,p:RA[k].p})).sort((a,b)=>b.p-a.p);
+  $('#stack').innerHTML=rows.map(r=>`<i style="width:${r.p/BR.p*100}%;background:var(${REG[r.k].c})${state.reg==='all'||state.reg===r.k?'':';opacity:.3'}" data-tip="<b>${REG[r.k].n}</b><br>${mi(r.p)} mi · ${f1(r.p/BR.p*100)}%"></i>`).join('');
+  $('#leg').innerHTML=rows.map(r=>`<div class="lg${dim(r.k)}"><span class="nm"><i class="dot" style="background:var(${REG[r.k].c})"></i>${REG[r.k].n}</span><span class="v">${mi(r.p)} mi</span><b>${f1(r.p/BR.p*100)}%</b></div>`).join('');
+  const mx=Math.max(...CENSOS.map(c=>c[1]));
+  $('#cols').innerHTML=CENSOS.map((c,i)=>`<div class="col${i===5?' last':''}" data-tip="<b>Censo ${c[0]}</b><br>${f1(c[1])} milhões de habitantes"><span>${f1(c[1])}</span><i style="height:${c[1]/mx*100*.72}%"></i></div>`).join('');
+  $('#years').innerHTML=CENSOS.map(c=>`<span>${c[0]}</span>`).join('');
+}
+
+function renderTable(){
+  const {k,d}=state.sort,q=state.q.trim().toLowerCase();
+  const list=UFS.filter(inReg).filter(u=>!q||u.n.toLowerCase().includes(q)||u.u.toLowerCase()===q||REG[u.r].n.toLowerCase().includes(q))
+    .sort((a,b)=>k==='n'?d*a.n.localeCompare(b.n,'pt-BR'):k==='r'?d*REG[a.r].n.localeCompare(REG[b.r].n,'pt-BR'):d*(a[k]-b[k]));
+  const cols=[['n','UF'],['r','Região'],['p','População'],['m','Municípios'],['rpc','Renda per capita'],['rmt','Rend. mensal'],['tx','Desocupação']];
+  const mx=UFS[0].p;
+  $('#tblCount').textContent=`${list.length} de 27 UFs${state.reg==='all'?'':' · '+REG[state.reg].n}`;
+  $('#tbl').innerHTML=`<thead><tr>${cols.map(([c,l])=>`<th scope="col"${state.sort.k===c?` aria-sort="${d<0?'descending':'ascending'}"`:''}><button type="button" data-sort="${c}">${l}</button></th>`).join('')}</tr></thead><tbody>${
+    list.length?list.map(u=>`<tr><td><span class="uf">${u.u}</span>${u.n}</td><td><span class="r"><i class="dot" style="background:var(${REG[u.r].c})"></i>${REG[u.r].n}</span></td><td><span class="pb"><i style="width:${u.p/mx*90}px"></i>${nf.format(u.p)}</span></td><td>${nf.format(u.m)}</td><td>${brl(u.rpc)}</td><td>${brl(u.rmt)}</td><td>${f1(u.tx)}%</td></tr>`).join(''):`<tr><td colspan="7" class="empty">Nenhuma UF encontrada para “${esc(state.q)}”.</td></tr>`}</tbody>`;
+}
+
+function renderReq(){
+  const p=[];
+  if(state.reg!=='all')p.push('regiao='+REG[state.reg].slug);
+  p.push('indicador='+METRICS[state.metric].param);
+  $('#req').innerHTML=`<b>GET</b>/v1/ufs?${p.join('&amp;')}`;
+}
+
+/* ---------- tooltip ---------- */
+const tip=$('#tip');
+function showTip(html,cx,cy){
+  tip.innerHTML=html;tip.hidden=false;
+  const w=tip.offsetWidth,h=tip.offsetHeight;
+  let x=cx+14,y=cy+16;
+  if(x+w>innerWidth-8)x=cx-w-14;
+  if(y+h>innerHeight-8)y=cy-h-12;
+  tip.style.left=Math.max(8,x)+'px';tip.style.top=Math.max(8,y)+'px';
+}
+function hideTip(){tip.hidden=true}
+
+/* ---------- events ---------- */
+function renderAll(){
+  renderChips();renderKpis();renderMetricSeg();renderTiles();renderDetail();renderRank();renderIncome();renderTrendText();renderPop();renderTable();renderReq();applyFocus();
+}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-reg],[data-metric],[data-rmode],[data-sel],[data-sort]');
+  if(!t)return;
+  if(t.dataset.reg){state.reg=t.dataset.reg;
+    if(state.reg!=='all'&&BY[state.sel].r!==state.reg){state.sel=UFS.filter(inReg).sort((a,b)=>b.p-a.p)[0].u}
+    state.focus=state.sel;renderAll();}
+  else if(t.dataset.metric){state.metric=t.dataset.metric;renderMetricSeg();renderTiles();renderDetail();renderRank();renderReq();applyFocus();}
+  else if(t.dataset.rmode){state.rmode=t.dataset.rmode;renderIncome();}
+  else if(t.dataset.sel){state.sel=t.dataset.sel;state.focus=state.sel;renderTiles();renderDetail();applyFocus();}
+  else if(t.dataset.sort){const k=t.dataset.sort;state.sort=state.sort.k===k?{k,d:-state.sort.d}:{k,d:(k==='n'||k==='r')?1:-1};renderTable();}
+});
+document.addEventListener('mouseover',e=>{
+  const el=e.target.closest('[data-uf]');
+  const u=el?el.dataset.uf:state.sel;
+  if(u!==state.focus){state.focus=u;renderDetail();applyFocus();}
+});
+document.addEventListener('focusin',e=>{
+  const el=e.target.closest('[data-uf]');
+  if(el&&el.dataset.uf!==state.focus){state.focus=el.dataset.uf;renderDetail();applyFocus();}
+});
+document.addEventListener('mousemove',e=>{
+  if(e.target.closest('#trend'))return;
+  const t=e.target.closest('[data-tip]');
+  if(t)showTip(t.dataset.tip,e.clientX,e.clientY);else hideTip();
+});
+document.addEventListener('scroll',hideTip,true);
+$('#q').addEventListener('input',e=>{state.q=e.target.value;renderTable();});
+
+renderAll();drawTrend();
+let rw=0;
+new ResizeObserver(en=>{const w=Math.round(en[0].contentRect.width);if(w!==rw){rw=w;drawTrend();}}).observe($('#trend'));
+})();
+</script>

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <title>Brasil em Números</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='3' width='12' height='12' rx='3' fill='%239ec5f4'/%3E%3Crect x='17' y='3' width='12' height='12' rx='3' fill='%236da7ec'/%3E%3Crect x='3' y='17' width='12' height='12' rx='3' fill='%230071e3'/%3E%3Crect x='17' y='17' width='12' height='12' rx='3' fill='%23f2b705'/%3E%3C/svg%3E">
+  <script>
+    /* Aplica o tema antes de pintar, para não piscar: ?theme=light|dark na URL tem prioridade sobre o salvo. */
+    try {
+      var t = new URLSearchParams(location.search).get('theme') || localStorage.getItem('bn-theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Inter só entra onde não existe a SF Pro (fora de aparelhos Apple). -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="nav">
+    <div class="nav-in">
+      <a class="brand" href="#topo" aria-label="Brasil em Números, início">
+        <span class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        Brasil em Números
+      </a>
+      <nav class="nav-links" aria-label="Seções">
+        <a href="#panorama">Panorama</a>
+        <a href="#mapa">Mapa</a>
+        <a href="#renda">Renda</a>
+        <a href="#trabalho">Trabalho</a>
+        <a href="#tabela">UFs</a>
+      </nav>
+      <div class="nav-right">
+        <span class="status" id="status" data-state="loading" role="status"><i></i><span>Carregando…</span></span>
+        <button class="icon-btn" id="themeBtn" type="button" aria-label="Alternar entre tema claro e escuro">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17a8.5 8.5 0 0 0 0-17z" class="fill"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="topo">
+      <p class="eyebrow">Panorama nacional</p>
+      <h1>O Brasil,<br><span class="grad">em números.</span></h1>
+      <p class="lede">População, renda e trabalho nas 27 unidades da federação, num só lugar.</p>
+      <div class="hero-ctl">
+        <div class="seg-scroll">
+          <div class="seg seg-lg" id="regSeg" role="group" aria-label="Filtrar por região">
+            <span class="thumb" aria-hidden="true"></span>
+            <button type="button" data-reg="all" aria-pressed="true">Brasil</button>
+            <button type="button" data-reg="SE" aria-pressed="false"><i class="dot" style="background:var(--c1)"></i>Sudeste</button>
+            <button type="button" data-reg="NE" aria-pressed="false"><i class="dot" style="background:var(--c2)"></i>Nordeste</button>
+            <button type="button" data-reg="S" aria-pressed="false"><i class="dot" style="background:var(--c3)"></i>Sul</button>
+            <button type="button" data-reg="N" aria-pressed="false"><i class="dot" style="background:var(--c4)"></i>Norte</button>
+            <button type="button" data-reg="CO" aria-pressed="false"><i class="dot" style="background:var(--c5)"></i>Centro-Oeste</button>
+          </div>
+        </div>
+        <code class="req" id="req" title="Requisição equivalente à visão atual"></code>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <div class="erro" id="erro" hidden role="alert">
+        <h2>Não foi possível carregar os dados</h2>
+        <p id="erroMsg"></p>
+        <button type="button" class="btn" id="retry">Tentar novamente</button>
+        <p class="dica">Confira o <code>apiBase</code> em <code>config.js</code> e se a API liberou CORS para esta origem.</p>
+      </div>
+
+      <div class="bento is-loading" id="bento" aria-busy="true">
+        <article class="card kpi c-pop" id="cPop" style="--i:0" aria-label="População"></article>
+        <article class="card kpi c-terr" id="cTerr" style="--i:1" aria-label="Territórios"></article>
+        <article class="card kpi c-rpc" id="cRpc" style="--i:2" aria-label="Renda domiciliar per capita"></article>
+        <article class="card kpi c-rmt" id="cRmt" style="--i:3" aria-label="Rendimento médio mensal"></article>
+        <article class="card kpi c-des" id="cDes" style="--i:4" aria-label="Pessoas desocupadas"></article>
+
+        <article class="card c-map" id="mapa" style="--i:5">
+          <header class="card-h">
+            <div><h2>Mapa das UFs</h2><p>Cada quadrado é uma UF, posicionado como no território.</p></div>
+            <div class="seg" id="metricSeg" role="group" aria-label="Indicador do mapa">
+              <span class="thumb" aria-hidden="true"></span>
+              <button type="button" data-metric="pop" aria-pressed="true">População</button>
+              <button type="button" data-metric="rpc" aria-pressed="false">Renda</button>
+              <button type="button" data-metric="tx" aria-pressed="false">Desocupação</button>
+            </div>
+          </header>
+          <div class="detail" id="detail" aria-live="polite"></div>
+          <div class="tiles" id="tiles"></div>
+          <div class="ramp" id="ramp"></div>
+        </article>
+
+        <article class="card c-rank" style="--i:6">
+          <header class="card-h">
+            <div><h2 id="rankTitle">Ranking das UFs</h2><p id="rankSub"></p></div>
+          </header>
+          <div class="rank" id="rank"></div>
+          <a class="more" href="#tabela">Ver as 27 UFs na tabela ↓</a>
+        </article>
+
+        <article class="card c-renda" id="renda" style="--i:7">
+          <header class="card-h">
+            <div><h2>Renda por região</h2><p id="rendaSub"></p></div>
+            <div class="seg" id="rendaSeg" role="group" aria-label="Tipo de renda">
+              <span class="thumb" aria-hidden="true"></span>
+              <button type="button" data-rmode="rpc" aria-pressed="true">Per capita</button>
+              <button type="button" data-rmode="rmt" aria-pressed="false">Trabalho</button>
+            </div>
+          </header>
+          <div class="legend-ref" id="rendaRef"></div>
+          <div class="irows" id="irows"></div>
+          <p class="insight" id="insight"></p>
+        </article>
+
+        <article class="card c-trab" id="trabalho" style="--i:8">
+          <header class="card-h">
+            <div><h2>Mercado de trabalho</h2><p>Taxa de desocupação por trimestre · Brasil</p></div>
+          </header>
+          <div class="big" id="bigTrab"></div>
+          <div id="trend" role="img" aria-label="Taxa de desocupação ao longo dos trimestres"></div>
+          <div class="mini" id="mini"></div>
+        </article>
+
+        <article class="card c-reg" id="populacao" style="--i:9">
+          <header class="card-h">
+            <div><h2>Regiões</h2><p>Quem mora onde e quantos municípios há</p></div>
+          </header>
+          <div class="stack" id="stack"></div>
+          <div class="leg" id="leg"></div>
+          <div class="mini" id="munis"></div>
+        </article>
+
+        <section class="card c-tbl" id="tabela" style="--i:10">
+          <header class="card-h">
+            <div><h2>Todas as UFs</h2><p id="tblCount"></p></div>
+            <label class="search">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4-4"/></svg>
+              <input id="q" type="search" placeholder="Buscar UF ou região" aria-label="Buscar UF ou região" autocomplete="off">
+            </label>
+          </header>
+          <div class="tw"><table id="tbl"></table></div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="foot" id="foot">
+    <p id="note">Dados de exemplo para validar o layout. Aponte o painel para a sua API em <code>config.js</code>.</p>
+  </footer>
+
+  <div class="tip" id="tip" hidden></div>
+
+  <script src="config.js"></script>
+  <script src="mock-data.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
