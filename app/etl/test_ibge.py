@@ -4,10 +4,6 @@ import pprint
 
 from ibge_client import buscar_populacao
 
-
-from ibge_client import buscar_populacao
-
-
 dados = buscar_populacao()
 
 print(f"Tipo: {type(dados)}")

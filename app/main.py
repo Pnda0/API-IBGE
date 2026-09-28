@@ -22,4 +22,6 @@ def health():
         "status": "healthy",
     }
 
+# Registra todas as rotas de routers/estados.py no app
 app.include_router(estados.router)
+
