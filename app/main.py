@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from app.routers import estados
 
 app = FastAPI(
     title="IBGE Data API",
@@ -21,3 +22,4 @@ def health():
         "status": "healthy",
     }
 
+app.include_router(estados.router)

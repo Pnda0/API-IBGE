@@ -33,9 +33,3 @@ def buscar_populacao() -> list[dict]:
     response.raise_for_status()
 
     return response.json()
-
-municipios_sp = buscar_municipios("SP")
-print(f"Quantidade de municípios em São Paulo: {len(municipios_sp)}")
-
-municipios_rj = buscar_municipios("RJ")
-print(f"Quantidade de municípios em Rio de Janeiro: {len(municipios_rj)}")
