@@ -10,7 +10,7 @@ router = APIRouter(
 
 
 @router.get("/", response_model=list[Estado])
-def listar_estados():
+def listar_estados(regiao: str | None = None):
     """
     Retorna a lista de todos os estados do Brasil.
     """
@@ -26,8 +26,15 @@ def listar_estados():
                 regiao=item["regiao"]["nome"],
             )
         )
+    if regiao:
+        filtrados = []
+        for estado in estados:
+            if estado.regiao == regiao:
+                filtrados.append(estado)
+        estados = filtrados
 
     return estados
+
 
     
 # {sigla_estado} vem da URL e é passado para o parâmetro de mesmo nome

@@ -86,7 +86,7 @@ class Handler(SimpleHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    porta = int(sys.argv[1]) if len(sys.argv) > 1 else 8000
+    porta = int(sys.argv[1]) if len(sys.argv) > 1 else 8002
     print(f"Painel:  http://localhost:{porta}/")
     print(f"Com API: http://localhost:{porta}/?api=http://localhost:{porta}")
     print("Ctrl+C para parar.")
